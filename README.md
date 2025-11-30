@@ -198,9 +198,11 @@ Includes:
 - Interpretable
 - Statistically meaningful coefficients
 - Limited variance explained (weather alone insufficient)
+- Calculate the accuracy and R^2 to check the fit of the model.
 
 ## Random Forest
 - Handles mixed data types & nonlinearities
 - Scales well to 300K+ records
 - Accuracy modest due to overlapping crime categories
 - Captures nonlinear interactions between time, district, and weather
+- Define the number of trees and depth to calculate the accuracy of the model.
