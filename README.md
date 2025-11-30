@@ -13,7 +13,7 @@ The goal of this project is to quantify how temperature, precipitation, and snow
 - Trains a Random Forest classifier to predict offense category.
 - Produces interpretable risk tables identifying district-hour-temperature hotspots.
 ## Repository Structure
----
+
 boston-crime-weather/
 │
 ├── data/
@@ -39,7 +39,7 @@ boston-crime-weather/
 │
 ├── README.md
 └── requirements.txt
----
+
 ## Installation & Environment Setup
 1. Clone the repository
 ---
@@ -57,39 +57,39 @@ venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ---
 5. Install & Configure Apache Spark
----
+
 Download Spark 3.4+
 
 Install Hadoop binaries if on Windows
----
+
 Ensure SPARK_HOME and PATH are set correctly:
----
+
 export SPARK_HOME="/path/to/spark"
 export PATH="$SPARK_HOME/bin:$PATH"
 ---
 ## Quick Start
 Run the full notebook
----
+
 jupyter notebook notebooks/Crime_and_Weather_Analysis.ipynb
 ---
 Or run individual preprocessing steps
 
 Crime preprocessing:
----
+
 spark-submit src/preprocess_crime.py
 ---
 
 Weather preprocessing:
----
+
 spark-submit src/preprocess_weather.py
 ---
 
 Join + aggregation:
-'''
+
 spark-submit src/join_and_aggregate.py
-'''
+---
 
 Train Random Forest model:
----
+
 spark-submit src/model_random_forest.py
 ---
