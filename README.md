@@ -12,7 +12,6 @@ The goal of this project is to quantify how temperature, precipitation, and snow
 - Joins daily crime with weather, computes rolling correlations, and runs linear regression tests.
 - Trains a Random Forest classifier to predict offense category.
 - Produces interpretable risk tables identifying district-hour-temperature hotspots.
-
 ## Repository Structure
 ---
 boston-crime-weather/
@@ -86,9 +85,9 @@ spark-submit src/preprocess_weather.py
 ---
 
 Join + aggregation:
----
+'''
 spark-submit src/join_and_aggregate.py
----
+'''
 
 Train Random Forest model:
 ---
