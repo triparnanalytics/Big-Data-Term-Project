@@ -90,6 +90,7 @@ Train Random Forest model:
 ```bash
 spark-submit src/model_random_forest.py
 ```
+---
 ## Dataset Information
 ## Crime Dataset (Boston Police Incidents)
 - Source: Boston Police Department 2015–2018
@@ -143,6 +144,7 @@ Includes:
 - highf, lowf, precipinch, snowinch
 - 30-day rolling averages for correlation analysis
 
+---
 ## Preprocessing Stages
 ## Crime Preprocessing
 - Drop duplicates
@@ -186,6 +188,7 @@ Includes:
 - Elevated violent-crime fractions in East Boston, Mattapan during evening/night
 - Hot days amplify late-night crime risk across multiple districts
 
+---
 ## Model Evaluation
 ## Linear Regression
 - Interpretable
