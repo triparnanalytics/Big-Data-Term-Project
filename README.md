@@ -5,13 +5,17 @@ Exploring how temperature, precipitation, and seasonal patterns influence crime 
 This project analyzes how Boston crime patterns relate to weather conditions using PySpark-based preprocessing, correlation analysis, and machine learning. Crime incidents are linked with daily weather data, enriched with temporal and temperature features, and used to study the effects of heat, cold, precipitation, and snow. A Random Forest classifier predicts offense category using time, location, and weather inputs, while risk summaries identify high-risk neighborhood–hour–temperature combinations.
 
 ## Project Overview
-
-The goal of this project is to quantify how temperature, precipitation, and snow are associated with crime levels in Boston and to build an operational tool that highlights high-risk combinations of area, time, and temperature. Using Spark, the workflow:
-- Cleans and enriches raw crime data with temporal, severity, and behavioral features.
-- Cleans daily Boston weather, handles trace/missing values, and engineers seasonal features.
-- Joins daily crime with weather, computes rolling correlations, and runs linear regression tests.
-- Trains a Random Forest classifier to predict offense category.
-- Produces interpretable risk tables identifying district-hour-temperature hotspots.
+- By: Triparna Kundu, Keerthi Uppalapati & Nidhi Nama
+- Project Purpose: Quantify how temperature, precipitation, and snow influence crime levels across Boston neighborhoods, and build a predictive tool to forecast high-risk crime periods and locations.
+- Motivation: Understanding the environmental and temporal drivers of crime can help law enforcement and city planners allocate resources efficiently and implement proactive safety measures. Combining weather data with neighborhood-specific crime patterns enables more accurate risk assessment and situational awareness.
+- Methods:
+  - Clean and enrich raw crime data with temporal (hour, day, season), severity, and behavioral features.
+  - Process daily Boston weather data, handle missing or trace values, and engineer seasonal indicators.
+  - Integrate crime and weather datasets by neighborhood and date, compute rolling correlations, and run exploratory regression analyses.
+  - Train machine learning models, including Random Forest and other classifiers, to forecast offense categories and crime intensity.
+  - Generate interpretable risk tables and visualizations highlighting high-risk neighborhood-hour-weather combinations.
+- Outcome: A predictive and operational tool that identifies crime hotspots based on weather and temporal patterns, enabling data-driven policing strategies and enhanced public safety.
+---
 ## Repository Structure
 ```bash
 boston-crime-weather/
