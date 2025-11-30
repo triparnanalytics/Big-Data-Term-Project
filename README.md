@@ -127,11 +127,11 @@ End-to-end workflow containing:
 ## Crime Features
 - Event-level: offense group, district, hour, day-of-week, UCR part
 -Enriched:
-- Offense category grouping
-- Severity scoring
-- Time-of-day buckets (Morning/Afternoon/Evening/Night)
-- Weekend, season, and quarter
-- Late-night high-risk hours (0–3, 22–23)
+  - Offense category grouping
+  - Severity scoring
+  - Time-of-day buckets (Morning/Afternoon/Evening/Night)
+  - Weekend, season, and quarter
+  - Late-night high-risk hours (0–3, 22–23)
 
 ## Weather Features
 - Clean high/low temp, precipitation, snow
@@ -173,8 +173,8 @@ Includes:
 ## Results & Observations
 ## Correlation Analysis
 - Crime rises with temperature:
--- High temp correlation ≈ 0.71
--- Low temp correlation ≈ 0.70
+  - High temp correlation ≈ 0.71
+  - Low temp correlation ≈ 0.70
 - Precipitation reduces crime (≈ −0.29 to −0.36)
 - Violent and property crimes show similar temperature sensitivity
 
