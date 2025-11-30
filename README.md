@@ -23,7 +23,7 @@ boston-crime-weather/
 ├── data/
 │   ├── crime.csv
 │   ├── boston-weather.csv
-│   └── processed/
+│   └── Boston_Neighbourhoods.geoson
 │
 ├── notebooks/
 │   └── Crime_and_Weather_Analysis.ipynb
@@ -112,8 +112,8 @@ spark-submit src/model_random_forest.py
 - Precipitation (with trace values handled)
 - Snowfall + snow depth
 - Derived: temprange, season, hasprecipitation, hassnow
-## Neighborhood / District Mapping:
-District codes (A1, B2, C11, etc.) mapped to readable names (Downtown, Roxbury, Dorchester, etc.) used for area-based analysis.
+## Boston_Neighborhood / District Mapping:
+Use the .geoson file to extraxt the district codes (A1, B2, C11, etc.) mapped to readable names (Downtown, Roxbury, Dorchester, etc.) and implement it for area-based analysis.
 
 ## File Description
 ## Crime_and_Weather_Analysis.ipynb
