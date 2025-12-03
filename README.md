@@ -172,7 +172,7 @@ gcloud dataproc jobs submit pyspark \
 4. Retrieve Outputs
 Results will be stored in your GCS bucket under the output folder:
 ```bash
-gs://<bucket_name>/output/risk_analysis/
+gs://<bucket_name>/output/output_results_gcp.txt
 ```
 The results can be downloaded or can be viewed directly from the GCS console.
 
