@@ -16,6 +16,86 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
   - Generate interpretable risk tables and visualizations highlighting high-risk neighborhood-hour-weather combinations.
 - Outcome: A predictive and operational tool that identifies crime hotspots based on weather and temporal patterns, enabling data-driven policing strategies and enhanced public safety.
 ---
+## Dataset Information
+## Crime Dataset (Boston Police Incidents)
+- Source: Boston Police Department 2015–2018
+- Incident records: ~319k
+- Key variables: offense codes, district, hour, UCR part, coordinates
+
+## Engineered features:
+- OFFENSECATEGORY (Violent, Property, Drug, Traffic, Other)
+- CRIMESEVERITY (UCR part–based score)
+- Temporal features: season, weekend, quarter, time-of-day
+- Behavior indicators: HIGHRISKHOUR, SHOOTINGFLAG
+
+## Weather Dataset (Boston Daily Weather)
+- Daily high/low temperature
+- Precipitation (with trace values handled)
+- Snowfall + snow depth
+- Derived: temprange, season, hasprecipitation, hassnow
+## Boston_Neighborhood / District Mapping:
+Use the .geoson file to extraxt the district codes (A1, B2, C11, etc.) mapped to readable names (Downtown, Roxbury, Dorchester, etc.) and implement it for area-based analysis.
+---
+## Preprocessing Stages
+## Crime Preprocessing
+- Drop duplicates
+- Clean key string columns
+- Parse timestamps → crimedate, year, month, day, hour
+- Impute missing lat/long
+- Fill missing categorical labels
+- Engineer all temporal + severity + category features
+- Encode categorical fields for ML
+- Produce reusable clean CSV
+
+## Weather Preprocessing
+- Convert “T”→0.001 and missing markers
+- Normalize column names
+- Parse date field
+- Impute missing numeric values
+- Engineer temperature range + seasonal flags
+
+## Crime–Weather Join
+
+- Aggregate crimes daily
+- Join on date
+- Reindex in pandas to fill missing days
+- Compute rolling windows for correlation
+  
+## Analysis & Modeling
+## Correlation Analysis
+- Crime rises with temperature:
+  - High temp correlation ≈ 0.71
+  - Low temp correlation ≈ 0.70
+- Precipitation reduces crime (≈ −0.29 to −0.36)
+- Violent and property crimes show similar temperature sensitivity
+
+## Seasonal & Temperature Patterns
+- Freezing days → lowest crime (~233/day)
+- Crime increases through Cool → Warm → Hot
+- Summer > Fall > Spring > Winter
+
+## High-Risk Area/Time/Temperature Hotspots
+- Late-night Downtown & South End in Cool/Warm conditions
+- Elevated violent-crime fractions in East Boston, Mattapan during evening/night
+- Hot days amplify late-night crime risk across multiple districts
+
+---
+## Model Evaluation
+## Linear Regression
+- Interpretable
+- Suitable for binary or categorical outcomes
+- Measures the effect of predictors on the probability of an event
+- Model fit can be assessed using accuracy.
+- Limited predictive power if only weather features are used; additional features improve performance.
+  
+## Random Forest
+- Handles mixed data types & nonlinearities
+- Scales well to 300K+ records
+- Accuracy modest due to overlapping crime categories
+- Captures nonlinear interactions between time, district, and weather
+- Define the number of trees and depth to calculate the accuracy of the model.
+---
+
 ## Repository Structure
 ```bash
 boston-crime-weather/
@@ -71,138 +151,42 @@ Ensure SPARK_HOME and PATH are set correctly:
 export SPARK_HOME="/path/to/spark"
 export PATH="$SPARK_HOME/bin:$PATH"
 ```
-## Quick Start
-Run the full notebook
+## How to Run the code
+1. Upload Files to Google Cloud Storage
+Upload all scripts and datasets to your GCS bucket:
+```bash
+gs://<bucket_name>/Crime_and_Weather_Analysis_GCP.py
+gs://<bucket_name>/boston-weather.csv
+gs://<bucket_name>/crime.csv
+gs://<bucket_name>/Boston_Neighbours.geojson
+```
+2. Create a Dataproc Cluster
+
+- Create a Dataproc cluster with PySpark pre-installed.
+- Ensure enough nodes for your dataset size.
+
+3. Submit the PySpark Job
+
+Run the analysis on your cluster:
+```bash
+gcloud dataproc jobs submit pyspark \
+    gs://<bucket_name>/Crime_and_Weather_Analysis_GCP.py \
+    --cluster <cluster_name> \
+    --region <region> \
+    -- gs://<bucket_name>/boston-weather.csv gs://<bucket_name>/crime.csv gs://<bucket_name>/output/
+```
+4. Retrieve Outputs
+Results will be stored in your GCS bucket under the output folder:
+```bash
+gs://<bucket_name>/output/risk_analysis/
+```
+The results can be downloaded or can be viewed directly from the GCS console.
+
+Or, 
+
+Run the full notebook in your local system
 ```bash
 jupyter notebook notebooks/Crime_and_Weather_Analysis.ipynb
 ```
-Or run individual preprocessing steps
-
-Crime preprocessing:
-```bash
-spark-submit src/preprocess_crime.py
-```
-Weather preprocessing:
-```bash
-spark-submit src/preprocess_weather.py
-```
-Join + aggregation:
-```bash
-spark-submit src/join_and_aggregate.py
-```
-Train Random Forest model:
-```bash
-spark-submit src/model_random_forest.py
-```
 ---
-## Dataset Information
-## Crime Dataset (Boston Police Incidents)
-- Source: Boston Police Department 2015–2018
-- Incident records: ~319k
-- Key variables: offense codes, district, hour, UCR part, coordinates
 
-## Engineered features:
-- OFFENSECATEGORY (Violent, Property, Drug, Traffic, Other)
-- CRIMESEVERITY (UCR part–based score)
-- Temporal features: season, weekend, quarter, time-of-day
-- Behavior indicators: HIGHRISKHOUR, SHOOTINGFLAG
-
-## Weather Dataset (Boston Daily Weather)
-- Daily high/low temperature
-- Precipitation (with trace values handled)
-- Snowfall + snow depth
-- Derived: temprange, season, hasprecipitation, hassnow
-## Boston_Neighborhood / District Mapping:
-Use the .geoson file to extraxt the district codes (A1, B2, C11, etc.) mapped to readable names (Downtown, Roxbury, Dorchester, etc.) and implement it for area-based analysis.
-
-## File Description
-## Crime_and_Weather_Analysis.ipynb
-
-End-to-end workflow containing:
-- Crime preprocessing + feature engineering
-- Weather preprocessing
-- Daily join + rolling averages
-- Correlation analysis
-- Regression modeling
-- Random Forest classification
-- Risk summarization by neighborhood, hour, and temperature bucket
-
-## Dataset Explanation
-## Crime Features
-- Event-level: offense group, district, hour, day-of-week, UCR part
--Enriched:
-  - Offense category grouping
-  - Severity scoring
-  - Time-of-day buckets (Morning/Afternoon/Evening/Night)
-  - Weekend, season, and quarter
-  - Late-night high-risk hours (0–3, 22–23)
-
-## Weather Features
-- Clean high/low temp, precipitation, snow
-- Derived temperature range and seasonal labels
-- Precipitation/snow binary indicators
-
-## Joined Daily Dataset
-Includes:
-- totalcrimes, violentcrimes, propertycrimes, shootings
-- highf, lowf, precipinch, snowinch
-- 30-day rolling averages for correlation analysis
-
----
-## Preprocessing Stages
-## Crime Preprocessing
-- Drop duplicates
-- Clean key string columns
-- Parse timestamps → crimedate, year, month, day, hour
-- Impute missing lat/long
-- Fill missing categorical labels
-- Engineer all temporal + severity + category features
-- Encode categorical fields for ML
-- Produce reusable clean CSV
-
-## Weather Preprocessing
-- Convert “T”→0.001 and missing markers
-- Normalize column names
-- Parse date field
-- Impute missing numeric values
-- Engineer temperature range + seasonal flags
-
-## Crime–Weather Join
-
-- Aggregate crimes daily
-- Join on date
-- Reindex in pandas to fill missing days
-- Compute rolling windows for correlation
-
-## Results & Observations
-## Correlation Analysis
-- Crime rises with temperature:
-  - High temp correlation ≈ 0.71
-  - Low temp correlation ≈ 0.70
-- Precipitation reduces crime (≈ −0.29 to −0.36)
-- Violent and property crimes show similar temperature sensitivity
-
-## Seasonal & Temperature Patterns
-- Freezing days → lowest crime (~233/day)
-- Crime increases through Cool → Warm → Hot
-- Summer > Fall > Spring > Winter
-
-## High-Risk Area/Time/Temperature Hotspots
-- Late-night Downtown & South End in Cool/Warm conditions
-- Elevated violent-crime fractions in East Boston, Mattapan during evening/night
-- Hot days amplify late-night crime risk across multiple districts
-
----
-## Model Evaluation
-## Linear Regression
-- Interpretable
-- Statistically meaningful coefficients
-- Limited variance explained (weather alone insufficient)
-- Calculate the accuracy and R^2 to check the fit of the model.
-
-## Random Forest
-- Handles mixed data types & nonlinearities
-- Scales well to 300K+ records
-- Accuracy modest due to overlapping crime categories
-- Captures nonlinear interactions between time, district, and weather
-- Define the number of trees and depth to calculate the accuracy of the model.
