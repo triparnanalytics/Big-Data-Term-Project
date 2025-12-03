@@ -82,7 +82,7 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 
 ---
 ## Model Evaluation
-## Linear Regression
+## Logistic Regression
 - Interpretable
 - Suitable for binary or categorical outcomes
 - Measures the effect of predictors on the probability of an event
