@@ -1,0 +1,108 @@
+=== CRIME + WEATHER ML FORECASTING RESULTS ===
+
+
+--- RandomForest (Predict offense_code_group) ---
+Accuracy: 0.53392077141094156
+Macro F1: 0.47045361587899492
+
+--- Linear Regression (Daily Total Crimes ~ Weather) ---
+RMSE: 31.27478379334961
+MAE: 24.19785907434298
+R^2: 0.10967807064168067
+
+--- SIMPLE CORRELATIONS (Daily Totals) ---
+Total Crimes vs High Temp: 0.4155976591361227
+Total Crimes vs Low Temp: 0.4026000179092112
+
+--- ROLLING 30-DAY CORRELATIONS (if available) ---
+Total Crimes vs High Temp: 78.75%
+Total Crimes vs Low Temp: 77.86%
+Total Crimes vs Temp Range: 43.27%
+Violent Crimes vs High Temp: 58.99%
+Property Crimes vs High Temp: 88.70%
+Shootings vs High Temp: 31.01%
+
+=== OFFENSE_CODE_GROUP DISTRIBUTION (Top 50) ===
+Motor Vehicle Accident Response | 37132
+Larceny | 25935
+Medical Assistance | 23540
+Investigate Person | 18750
+Other | 18075
+Drug Violation | 16548
+Simple Assault | 15826
+Vandalism | 15415
+Verbal Disputes | 13099
+Towed | 11287
+Investigate Property | 11124
+Larceny From Motor Vehicle | 10847
+Property Lost | 9751
+Warrant Arrests | 8407
+Aggravated Assault | 7807
+Violations | 6095
+Fraud | 5829
+Residential Burglary | 5606
+Missing Person Located | 4958
+Auto Theft | 4851
+Robbery | 4624
+Harassment | 4007
+Property Found | 3925
+Missing Person Reported | 3797
+Confidence Games | 3147
+Police Service Incidents | 2781
+Disorderly Conduct | 2611
+Fire Related Reports | 1920
+Firearm Violations | 1777
+License Violation | 1701
+Restraining Order Violations | 1607
+Recovered Stolen Property | 1455
+Counterfeiting | 1454
+Commercial Burglary | 1337
+Liquor Violation | 1052
+Auto Theft Recovery | 1051
+Ballistics | 981
+Landlord/Tenant Disputes | 968
+Search Warrants | 966
+Assembly or Gathering Violations | 955
+Property Related Damage | 912
+Firearm Discovery | 698
+Operating Under the Influence | 574
+License Plate Related Incidents | 560
+Offenses Against Child / Family | 545
+Other Burglary | 461
+Evading Fare | 407
+Embezzlement | 296
+Service | 285
+Prisoner Related Incidents | 253
+
+
+=== TOP 15 HISTORICAL HOTSPOTS ===
+DISTRICT=B2 | Neighborhood=None | Hour=17 | Temp=cool | Count=1048
+DISTRICT=B2 | Neighborhood=None | Hour=17 | Temp=warm | Count=1015
+DISTRICT=B2 | Neighborhood=None | Hour=18 | Temp=warm | Count=1008
+DISTRICT=B2 | Neighborhood=None | Hour=18 | Temp=cool | Count=988
+DISTRICT=B2 | Neighborhood=None | Hour=16 | Temp=cool | Count=979
+DISTRICT=B2 | Neighborhood=None | Hour=12 | Temp=cool | Count=952
+DISTRICT=D4 | Neighborhood=None | Hour=18 | Temp=cool | Count=919
+DISTRICT=B2 | Neighborhood=None | Hour=19 | Temp=cool | Count=909
+DISTRICT=B2 | Neighborhood=None | Hour=16 | Temp=warm | Count=905
+DISTRICT=B2 | Neighborhood=None | Hour=19 | Temp=warm | Count=896
+DISTRICT=B2 | Neighborhood=None | Hour=12 | Temp=warm | Count=892
+DISTRICT=D4 | Neighborhood=None | Hour=12 | Temp=warm | Count=882
+DISTRICT=D4 | Neighborhood=None | Hour=17 | Temp=cool | Count=881
+DISTRICT=C11 | Neighborhood=None | Hour=16 | Temp=cool | Count=873
+DISTRICT=C11 | Neighborhood=None | Hour=17 | Temp=cool | Count=853
+
+=== SAMPLE ROWS (FIRST 10) ===
+{'date': datetime.date(2018, 9, 2), 'incident_number': 'I182070945', 'offense_code': 619, 'offense_code_group': 'Larceny', 'offense_description': 'LARCENY ALL OTHERS', 'district': 'D14', 'reporting_area': '808', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 2, 13, 0), 'year': 2018, 'month': 9, 'day_of_week': 'Sunday', 'hour': 13, 'ucr_part': 'Part One', 'street': 'LINCOLN ST', 'lat': 42.35779134, 'long': -71.13937053, 'location': '(42.35779134, -71.13937053)', 'day_str': '2 sep 2018', 'high_f': 84.0, 'low_f': 64.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'warm', 'has_precip': 0, 'has_snow': 0, 'temp_range': 20.0, 'crime_type': 'property'}
+{'date': datetime.date(2018, 8, 21), 'incident_number': 'I182070943', 'offense_code': 1402, 'offense_code_group': 'Vandalism', 'offense_description': 'VANDALISM', 'district': 'C11', 'reporting_area': '347', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 8, 21, 0, 0), 'year': 2018, 'month': 8, 'day_of_week': 'Tuesday', 'hour': 0, 'ucr_part': 'Part Two', 'street': 'HECLA ST', 'lat': 42.30682138, 'long': -71.06030035, 'location': '(42.30682138, -71.06030035)', 'day_str': '21 aug 2018', 'high_f': 72.0, 'low_f': 64.9, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'warm', 'has_precip': 0, 'has_snow': 0, 'temp_range': 7.099999999999994, 'crime_type': 'property'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070941', 'offense_code': 3410, 'offense_code_group': 'Towed', 'offense_description': 'TOWED MOTOR VEHICLE', 'district': 'D4', 'reporting_area': '151', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 19, 27), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 19, 'ucr_part': 'Part Three', 'street': 'CAZENOVE ST', 'lat': 42.34658879, 'long': -71.07242943, 'location': '(42.34658879, -71.07242943)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'other'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070940', 'offense_code': 3114, 'offense_code_group': 'Investigate Property', 'offense_description': 'INVESTIGATE PROPERTY', 'district': 'D4', 'reporting_area': '272', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 21, 16), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 21, 'ucr_part': 'Part Three', 'street': 'NEWCOMB ST', 'lat': 42.33418175, 'long': -71.07866441, 'location': '(42.33418175, -71.07866441)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'property'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070938', 'offense_code': 3114, 'offense_code_group': 'Investigate Property', 'offense_description': 'INVESTIGATE PROPERTY', 'district': 'B3', 'reporting_area': '421', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 21, 5), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 21, 'ucr_part': 'Part Three', 'street': 'DELHI ST', 'lat': 42.27536542, 'long': -71.09036101, 'location': '(42.27536542, -71.09036101)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'property'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070936', 'offense_code': 3820, 'offense_code_group': 'Motor Vehicle Accident Response', 'offense_description': 'M/V ACCIDENT INVOLVING PEDESTRIAN - INJURY', 'district': 'C11', 'reporting_area': '398', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 21, 9), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 21, 'ucr_part': 'Part Three', 'street': 'TALBOT AVE', 'lat': 42.29019621, 'long': -71.07159012, 'location': '(42.29019621, -71.07159012)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'other'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070933', 'offense_code': 724, 'offense_code_group': 'Auto Theft', 'offense_description': 'AUTO THEFT', 'district': 'B2', 'reporting_area': '330', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 21, 25), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 21, 'ucr_part': 'Part One', 'street': 'NORMANDY ST', 'lat': 42.30607218, 'long': -71.0827326, 'location': '(42.30607218, -71.08273260)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'property'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070932', 'offense_code': 3301, 'offense_code_group': 'Verbal Disputes', 'offense_description': 'VERBAL DISPUTE', 'district': 'B2', 'reporting_area': '584', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 20, 39, 37), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 20, 'ucr_part': 'Part Three', 'street': 'LAWN ST', 'lat': 42.32701648, 'long': -71.10555088, 'location': '(42.32701648, -71.10555088)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'other'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070931', 'offense_code': 301, 'offense_code_group': 'Robbery', 'offense_description': 'ROBBERY - STREET', 'district': 'C6', 'reporting_area': '177', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 20, 48), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 20, 'ucr_part': 'Part One', 'street': 'MASSACHUSETTS AVE', 'lat': 42.33152148, 'long': -71.07085307, 'location': '(42.33152148, -71.07085307)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'violent'}
+{'date': datetime.date(2018, 9, 3), 'incident_number': 'I182070929', 'offense_code': 3301, 'offense_code_group': 'Verbal Disputes', 'offense_description': 'VERBAL DISPUTE', 'district': 'C11', 'reporting_area': '364', 'shooting': None, 'occurred_on_date': datetime.datetime(2018, 9, 3, 20, 38), 'year': 2018, 'month': 9, 'day_of_week': 'Monday', 'hour': 20, 'ucr_part': 'Part Three', 'street': 'LESLIE ST', 'lat': 42.29514664, 'long': -71.05860832, 'location': '(42.29514664, -71.05860832)', 'day_str': '3 sep 2018', 'high_f': 96.1, 'low_f': 73.0, 'precip_inch': 0.0, 'snow_inch': 0.0, 'snowdepth_inch': None, 'neighborhood': None, 'area_id': None, 'temp_bucket': 'hot', 'has_precip': 0, 'has_snow': 0, 'temp_range': 23.099999999999994, 'crime_type': 'other'}
+
+=== FULL DATA SCHEMA (TEXT) ===
+struct<date:date,incident_number:string,offense_code:int,offense_code_group:string,offense_description:string,district:string,reporting_area:string,shooting:string,occurred_on_date:timestamp,year:int,month:int,day_of_week:string,hour:int,ucr_part:string,street:string,lat:double,long:double,location:string,day_str:string,high_f:double,low_f:double,precip_inch:double,snow_inch:double,snowdepth_inch:double,neighborhood:string,area_id:int,temp_bucket:string,has_precip:int,has_snow:int,temp_range:double,crime_type:string>
