@@ -110,20 +110,13 @@ boston-crime-weather/
 │   └── Crime_and_Weather_Analysis.ipynb
 │
 ├── src/
-│   ├── preprocess_crime.py
-│   ├── preprocess_weather.py
-│   ├── join_and_aggregate.py
-│   └── model_random_forest.py
-│
-├── results/
-│   ├── rolling_correlations.png
-│   ├── seasonal_patterns.png
-│   ├── regression_summary.txt
-│   ├── rf_confusion_matrix.png
-│   └── risk_tables/
-│
+│   ├── Crime_and_Weather_Analysis_GCP.py
+│ 
+├── Output/
+│   ├── {output}.png
+│   ├── requirements.txt
 ├── README.md
-└── requirements.txt
+
 ```
 ## Installation & Environment Setup
 1. Clone the repository
