@@ -1,8 +1,5 @@
 ############################################################
 # Crime + Weather ML Forecasting Pipeline (GCP Dataproc)
-# Target = offense_code_group (classification)
-# + Daily Linear Regression (crime ~ weather)
-# + Rolling 30-day correlation analysis
 ############################################################
 
 from pyspark.sql import SparkSession
@@ -139,7 +136,7 @@ print("Data joined successfully.")
 print("Columns after join:", df.columns)
 
 # ---------------------------------------------------------
-# 7. Feature Engineering (incident-level)
+# 7. Feature Engineering 
 # ---------------------------------------------------------
 df = df.withColumn(
     "temp_bucket",
@@ -166,7 +163,7 @@ df = df.withColumn(
 print("Feature engineering completed.")
 
 # ---------------------------------------------------------
-# 7A. DAILY AGGREGATES FOR CORRELATION & LINEAR REGRESSION
+# 7. DAILY AGGREGATES FOR CORRELATION & LINEAR REGRESSION
 # ---------------------------------------------------------
 
 # Daily crime aggregates
@@ -215,7 +212,7 @@ print(f"Simple correlation (Total Crimes vs High Temp): {corr_high_simple}")
 print(f"Simple correlation (Total Crimes vs Low Temp): {corr_low_simple}")
 
 # ---------------------------------------------------------
-# 7B. 30-DAY ROLLING WINDOW CORRELATION ANALYSIS
+# 30-DAY ROLLING WINDOW CORRELATION ANALYSIS
 # ---------------------------------------------------------
 
 print("=" * 70)
@@ -298,7 +295,7 @@ else:
 print("=" * 70)
 
 # ---------------------------------------------------------
-# 8. Prepare ML Dataset (incident-level RF classification)
+# 8. Prepare ML Dataset
 # ---------------------------------------------------------
 
 offense_indexer = StringIndexer(
@@ -362,8 +359,8 @@ train, test = df_ml.randomSplit([0.7, 0.3], seed=42)
 rf_model = RandomForestClassifier(
     featuresCol="features",
     labelCol="label_offense",
-    numTrees=25,   # reduced for stability
-    maxDepth=8     # reduced for stability
+    numTrees=25,   
+    maxDepth=8     
 ).fit(train)
 
 rf_preds = rf_model.transform(test)
@@ -440,7 +437,7 @@ reg_eval_r2 = RegressionEvaluator(
 print("Linear Regression (daily crime vs weather) evaluation completed.")
 
 # ---------------------------------------------------------
-# 13. Offense Group Distribution (limit for safety)
+# 13. Offense Group Distribution 
 # ---------------------------------------------------------
 offense_dist = (
     df.groupBy("offense_code_group")
@@ -449,26 +446,26 @@ offense_dist = (
     .limit(50)
 )
 
-# ---------------------------------------------------------
-# 14. Forecasting — Predefined Temperatures (offense labels only)
-# ---------------------------------------------------------
-PREDEFINED_TEMPS = [20, 32, 45, 60, 75, 90]
+# # ---------------------------------------------------------
+# # 14. Forecasting — Predefined Temperatures (offense labels only)
+# # ---------------------------------------------------------
+# PREDEFINED_TEMPS = [20, 32, 45, 60, 75, 90]
 
-forecast_rows = []
-for t in PREDEFINED_TEMPS:
-    synthetic = spark.createDataFrame(
-        [(12.0, t, t - 5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)],
-        ["hour", "high_f", "low_f", "precip_inch", "snow_inch",
-         "has_precip", "has_snow", "lat", "long"]
-    )
-    synthetic = assembler.transform(synthetic)
-    pred_off = rf_model.transform(synthetic).select("prediction").first()[0]
-    forecast_rows.append((t, float(pred_off)))
+# forecast_rows = []
+# for t in PREDEFINED_TEMPS:
+#     synthetic = spark.createDataFrame(
+#         [(12.0, t, t - 5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)],
+#         ["hour", "high_f", "low_f", "precip_inch", "snow_inch",
+#          "has_precip", "has_snow", "lat", "long"]
+#     )
+#     synthetic = assembler.transform(synthetic)
+#     pred_off = rf_model.transform(synthetic).select("prediction").first()[0]
+#     forecast_rows.append((t, float(pred_off)))
 
-forecast_df = spark.createDataFrame(
-    forecast_rows,
-    ["temperature", "predicted_offense_label"]
-)
+# forecast_df = spark.createDataFrame(
+#     forecast_rows,
+#     ["temperature", "predicted_offense_label"]
+# )
 
 # ---------------------------------------------------------
 # 15. Historical Hotspots (Top 15)
@@ -514,10 +511,6 @@ else:
 lines.append("\n=== OFFENSE_CODE_GROUP DISTRIBUTION (Top 50) ===")
 for row in offense_dist.collect():
     lines.append(f"{row['offense_code_group']} | {row['count']}")
-
-lines.append("\n=== FORECASTS FOR PREDEFINED TEMPERATURES (RF, offense labels) ===")
-for r in forecast_rows:
-    lines.append(f"Temp {r[0]}°F → Offense Label: {r[1]}")
 
 lines.append("\n=== TOP 15 HISTORICAL HOTSPOTS ===")
 for row in historical.collect():
