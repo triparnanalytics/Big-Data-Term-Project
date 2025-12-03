@@ -34,8 +34,8 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 - Snowfall + snow depth
 - Derived: temprange, season, hasprecipitation, hassnow
 
-## Boston_Neighborhood / District Mapping:
-Use the .geoson file to extraxt the district codes (A1, B2, C11, etc.) mapped to readable names (Downtown, Roxbury, Dorchester, etc.) and implement it for area-based analysis.
+## Boston_Neighborhood / District Mapping
+- Use the .geoson file to extraxt the district codes (A1, B2, C11, etc.) mapped to readable names (Downtown, Roxbury, Dorchester, etc.) and implement it for area-based analysis.
 ---
 ## Preprocessing Stages
 ## Crime Preprocessing
