@@ -114,7 +114,7 @@ boston-crime-weather/
 │ 
 ├── Output/
 │   ├── {output}.png
-│   ├── requirements.txt
+│   ├── results.txt
 ├── README.md
 
 ```
