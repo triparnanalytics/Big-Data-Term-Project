@@ -83,11 +83,10 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 ---
 ## Model Evaluation
 ## Logistic Regression
-- Interpretable
-- Suitable for binary or categorical outcomes
-- Measures the effect of predictors on the probability of an event
-- Model fit can be assessed using accuracy.
-- Limited predictive power if only weather features are used; additional features improve performance.
+- Simple and highly interpretable
+- Models the linear relationship between predictors and a continuous outcome
+- Model fit can be assessed using metrics like R², RMSE, and residual diagnostics
+- Assumes linearity and may underperform when relationships are non-linear or when important interaction terms are missing
   
 ## Random Forest
 - Handles mixed data types & nonlinearities
