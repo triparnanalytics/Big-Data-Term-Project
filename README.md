@@ -65,7 +65,7 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 ## Analysis & Modeling
 ## Correlation Analysis
 - Crime rises with temperature:
-  - High temp correlation ≈ 0.71
+  - High temp correlation ≈ 0.78
   - Low temp correlation ≈ 0.70
 - Precipitation reduces crime (≈ −0.29 to −0.36)
 - Violent and property crimes show similar temperature sensitivity
