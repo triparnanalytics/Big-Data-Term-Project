@@ -9,9 +9,9 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 - Project Purpose: Quantify how temperature, precipitation, and snow influence crime levels across Boston neighborhoods, and build a predictive tool to forecast high-risk crime periods and locations.
 - Motivation: Understanding the environmental and temporal drivers of crime can help law enforcement and city planners allocate resources efficiently and implement proactive safety measures. Combining weather data with neighborhood-specific crime patterns enables more accurate risk assessment and situational awareness.
 - Methods:
-  - Clean and enrich raw crime data with temporal (hour, day, season), severity, and behavioral features.
-  - Process daily Boston weather data, handle missing or trace values, and engineer seasonal indicators.
-  - Integrate crime and weather datasets by neighborhood and date, compute rolling correlations, and run exploratory regression analyses.
+  - Clean and add raw crime data with temporal (hour, day, season), severity, and behavioral features.
+  - Process daily Boston weather data, handle missing or null values, and engineer seasonal indicators.
+  - Integrate crime and weather datasets by neighborhood and date, compute rolling correlations, and run exploratory analyses.
   - Train machine learning models, including Random Forest and other classifiers, to forecast offense categories and crime intensity.
   - Generate interpretable risk tables and visualizations highlighting high-risk neighborhood-hour-weather combinations.
 - Outcome: A predictive and operational tool that identifies crime hotspots based on weather and temporal patterns, enabling data-driven policing strategies and enhanced public safety.
@@ -62,7 +62,7 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 - Reindex in pandas to fill missing days
 - Compute rolling windows for correlation
   
-## Analysis & Modeling
+## Results & Observations
 ## Correlation Analysis
 - Crime rises with temperature:
   - High temp correlation ≈ 0.78
@@ -82,7 +82,7 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 
 ---
 ## Model Evaluation
-## Logistic Regression
+## Linear Regression
 - Simple and highly interpretable
 - Models the linear relationship between predictors and a continuous outcome
 - Model fit can be assessed using metrics like R², RMSE, and residual diagnostics
