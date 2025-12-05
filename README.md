@@ -73,7 +73,7 @@ This project analyzes how Boston crime patterns relate to weather conditions usi
 ## Seasonal & Temperature Patterns
 - Freezing days → lowest crime (~233/day)
 - Crime increases through Cool → Warm → Hot
-- Summer > Fall > Spring > Winter
+- Crime intensity: Most in Summer > Fall > Spring > Winter
 
 ## High-Risk Area/Time/Temperature Hotspots
 - Late-night Downtown & South End in Cool/Warm conditions
